@@ -6,7 +6,7 @@ name: bbb步步宝7
 on:
   workflow_dispatch:
   schedule:
-     - cron: '0 8-23/2 * * *'
+     - cron: '0 8-23/3 * * *'
   watch:
     types: started
 jobs:
