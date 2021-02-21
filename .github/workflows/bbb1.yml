@@ -1,42 +1,36 @@
-name: BBB
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: bbb步步宝主
 
 on:
   workflow_dispatch:
   schedule:
-     - cron: '0 8-23/3 * * *'
+     - cron: '0 8-23/2 * * *'
   watch:
-    types: BBB
-env:
-  TZ: Asia/Shanghai
- 
+    types: started
 jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
-    env:
-        BBB_ck: ${{ secrets.BBB_ck }}
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/adw2s/adwktt.git ~/Scripts
+          git clone https://github.com/Irreversibles/BD.git ~/BD
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
       - name: npm install
-        if: env.BBB_ck
         run: |
-          cd ~/Scripts
-          npm install -g npm
-          npm update
-          npm install got
-      - name: '运行 【BBB】'
-        if: env.BBB_ck
+          cd ~/BD
+          npm install
+      - name: '运行 【步步宝2.14】'
         run: |
-          cd ~/Scripts
-          node BBB2.js
+          cd ~/BD
+          node BBB.js
         env:
-          BBB_ck: ${{ secrets.BBB_ck }}
+          BBB_COOKIE: ${{ secrets.BBB_ck }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
